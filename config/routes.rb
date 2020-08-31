@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  get 'users/show'
   get 'mahjong_record/top'
   root to: 'mahjong_record#top'
   devise_for :users
   
-  resources :users do
+  resources :users, only: [:show] do
     member do
       get :point
     end
