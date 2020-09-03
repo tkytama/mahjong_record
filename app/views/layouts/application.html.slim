@@ -2,13 +2,38 @@ doctype html
 html
   head
     title
-      | MahjongRecord
+      | mahjong_record
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    .app-title.navbar-expand-md.navbar-light.bg-light
-      .navbar-brand mahjong_record
+    header
+      nav.navbar.navbar-expand-lg.navbar-light.bg-light
+        a.navbar-brand href="#" 麻雀レコード
+        button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+          span.navbar-toggler-icon
+      
+        .collapse.navbar-collapse#navbarNav
+          ul.navbar-nav
+            li.nav-item.active
+              a.nav-link href="#" トップ画面
+            li.nav-item
+              a.nav-link href="#" ログイン
+            li.nav-item
+              a.nav-link href="#" 使い方
+            li.nav-item
+              a.nav-link.disabled href="#" Disabled
+      
     .container
-    = yield
+      = yield
+
+      footer
+        nav
+          ul.navbar-nav
+            li.navitem. =link_to "ページトップへ", mahjong_record_top_path
+            li.navitem. =link_to "ログイン", user_session_path
+            li.navitem. =link_to "利用規約", "#"
+            li.navitem. =link_to "プライバシー規約", "#"
+          small.navitem. @tkytamanegi
+
