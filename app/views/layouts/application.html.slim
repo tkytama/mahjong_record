@@ -10,20 +10,22 @@ html
   body
     header
       nav.navbar.navbar-expand-lg.navbar-light.bg-light
-        a.navbar-brand href="#" 麻雀レコード
+        a.navbar-brand href=mahjong_record_top_path 麻雀レコード
         button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
           span.navbar-toggler-icon
       
         .collapse.navbar-collapse#navbarNav
           ul.navbar-nav
-            li.nav-item.active
-              a.nav-link href="#" トップ画面
             li.nav-item
-              a.nav-link href="#" ログイン
+              a.nav-link href=mahjong_record_top_path トップ画面
+            li.nav-item.invalid-line
+              a=link_to 'ログアウト', destroy_user_session_path, method: :delete,data: { confirm: 'ログアウトしてもよろしいですか？'}
             li.nav-item
-              a.nav-link href="#" 使い方
+             a.nav-link href=new_user_session_path ログイン
             li.nav-item
-              a.nav-link.disabled href="#" Disabled
+              a.nav-link href=new_user_registration_path 新規登録
+            li.nav-item
+              a.nav-link href="#" 麻雀レコードとは？
       
     .container
       = yield
@@ -31,9 +33,13 @@ html
       footer
         nav
           ul.navbar-nav
-            li.navitem. =link_to "ページトップへ", mahjong_record_top_path
-            li.navitem. =link_to "ログイン", user_session_path
-            li.navitem. =link_to "利用規約", "#"
-            li.navitem. =link_to "プライバシー規約", "#"
+            li.navitem
+              a.nav-link href=mahjong_record_top_path トップ画面
+            li.navitem
+              a.nav-link href=new_user_session_path ログイン
+            li.navitem
+              a.nav-link href="#" 利用規約
+            li.navitem
+              a.nav-link href="#" プライバシー規約
           small.navitem. @tkytamanegi
 
