@@ -23,8 +23,8 @@
   p.term-result 年 月 日　～　年 月 日  検索
   p.term-result X月X日~X月X日の対局結果
 
-p = link_to '得点の詳細はこちら', point_user_path, class: 'btn btn-primary mr-3'
+p = link_to '得点の詳細はこちら', point_user_path, class: 'white-button point'
 
-p = link_to '部屋をつくる', point_user_path, class: 'btn btn-primary mr-3'
-
-p = link_to '部屋に入る', point_user_path, class: 'btn btn-primary mr-3'
+.link-buttons
+    p = link_to '部屋をつくる', point_user_path, class: 'silver-button make-room'
+    p = link_to '部屋に入る', point_user_path, class: 'white-button enter-room'
