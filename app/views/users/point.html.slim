@@ -1,12 +1,8 @@
 h1 検索ページ
 
-tr
-  th X月X日 ~ X月X日 
-
-  th 検索
-
-p X月X日~X月X日の対局結果
-
-p この日のルール確認
-
-= link_to 'もどる',user_path
+.contents-wrapper
+      
+  p.term-result 年 月 日　～　年 月 日  検索
+  p.term-result X月X日~X月X日の対局結果
+  .game-result-list
+  p.confirm-rule = link_to 'この日のルール確認', edit_user_registration_path
