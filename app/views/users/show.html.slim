@@ -3,9 +3,8 @@
   .over-image
     .user-background
     .user-image
-
+    p.profile-edit = link_to 'プロフィール編集', edit_user_registration_path 
   h5.user-name #{@user.name}
-  p.profile-edit = link_to 'プロフィール編集', edit_user_registration_path 
  
 .contents-wrapper
   
