@@ -1,24 +1,28 @@
-h1 #{@user.name}
-p = link_to 'プロフィール編集', edit_user_registration_path 
+
+.mypage-top
+  .over-image
+    .user-background
+    .user-image
+
+  h5.user-name #{@user.name}
+  p.profile-edit = link_to 'プロフィール編集', edit_user_registration_path 
  
-
-table border="1"
-
-  tr
-    th 平均順位
-
-    th 平均得点
-
-    th 平均点
-
-  tr
-    th 2.43
-
-    th 29,000
-
-    th +3.2
-
-p X月X日~X月X日の対局結果
+.contents-wrapper
+  
+  .average-result
+    .score-info
+      p 平均順位 
+      p 2.42
+    .vertical-line
+    .score-info
+      p 平均得点
+      p 29,000
+    .vertical-line
+    .score-info
+      p 平均点
+      p +2.4 
+  p.term-result 年 月 日　～　年 月 日  検索
+  p.term-result X月X日~X月X日の対局結果
 
 p = link_to '得点の詳細はこちら', point_user_path, class: 'btn btn-primary mr-3'
 
