@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-  get 'games/index'
-  get 'games/show'
-  get 'games/new'
-  get 'games/edit'
-  get 'games/update'
-  get 'games/destroy'
-  get 'users/show'
   get 'mahjong_record/top'
   root to: 'mahjong_record#top'
   devise_for :users
@@ -17,6 +10,7 @@ Rails.application.routes.draw do
   end
   
   resources :rooms, only: [:new, :create, :show] do
+    resources :games, only:[:new, :create, :edit, :update, :index, :delete]
     member do
       get :enter
       put :entering      
@@ -24,7 +18,6 @@ Rails.application.routes.draw do
       put :input_game_records
     end
 
-    resources :games, only:[:new, :create, :edit, :update, :index, :delete]
   end
 
   resources :enter_rooms, only: [:new, :create]
