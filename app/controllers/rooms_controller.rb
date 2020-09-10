@@ -18,7 +18,7 @@ class RoomsController < ApplicationController
     @room = Room.new(room_key: random_number,kaeshi: 30000, mochi: 25000, uma_4to1: 10, uma_3to2: 5)
     @room.save
     user = User.find(current_user.id)
-    user.room_id = @room.room_key
+    user.room_id = @room.id
     user.save
 
     redirect_to @room, notice: "部屋番号「#{@room.room_key}」に入室しました。"
