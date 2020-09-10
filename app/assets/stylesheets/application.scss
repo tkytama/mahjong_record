@@ -1,1 +1,288 @@
 @import "bootstrap";
+/*ヘッダー*/
+header{
+  .invalid-line{
+    text-decoration: none;
+    color: #38aef0;
+  }
+}
+
+
+/*フッター*/
+footer{
+  text-align: center;
+  margin-top: 10px;
+  background-color: #fafafa;
+  nav{
+    .navitem{
+      color: silver; 
+    }
+  }
+}
+
+/* パーツ*/
+@mixin white-button-temp{
+  margin: 30px auto;
+  color: #999999;
+  border-style: none;
+  width: 200px;
+  height: 31px;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px silver solid;
+}
+@mixin silver-button-temp{
+  margin: 30px auto;
+  color: white;
+  border-style: none;
+  width: 200px;
+  height: 31px;
+  background-color: silver;
+  border-radius: 15px;
+  border: 1px silver solid;
+}
+.white-button input[type="submit"]{
+  @include white-button-temp;
+}
+
+.white-button.point{
+  @include white-button-temp;
+  display: block;
+  width: 90%;
+  text-align: center;
+}
+
+.link-buttons{
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  margin:0 auto;
+  .white-button.enter-room{
+    @include white-button-temp;
+    display: block;
+    text-align: center;
+    width: 150px; 
+  }
+  .silver-button.make-room{
+    @include silver-button-temp;
+    display: block;
+    text-align: center;
+    width: 150px;
+   }
+}
+
+
+
+.silver-button input[type="submit"]{
+  @include silver-button-temp;
+}
+
+
+
+.contents-wrapper{
+  margin-top: 20px;
+  text-align: center;
+  padding: 15px 2%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: silver;
+  border-radius: 15px;
+}  
+
+.vertical-line{
+  background-color: silver;
+  margin: 0;
+  width: 2px;
+  height: 60px;
+  .score-info{
+    text-align: center;
+  }
+}
+.border-line{
+  border-top: 1px silver solid;
+  margin: 10px 0;
+}
+
+/* トップページ*/            
+.top-wrapper{
+  text-align: center;
+}
+
+.image-space{
+  border-style: solid;
+  border-width: 1px 0;
+  border-color: silver;
+  .top-logo{
+    width: 40%;
+  }
+}
+
+.message-wrapper{
+  text-align: center;
+  .about-app{
+    margin: 5px 0;
+    padding-top: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: silver;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    .figure{
+      margin-bottom: 15px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50px;
+      border-style: solid;
+      border-color: silver;
+      border-width: 1px;
+    }
+    .comment{
+      margin: 15px 15% 0 15%;
+      font-size: 15px;
+      font-weight: bolder;
+      p {
+        text-align: left;
+      }
+    }
+  }
+	  
+}
+
+/* デバイスで作成したページ*/
+
+.devise-wrapper{
+  margin-top: 20px;
+  text-align: center;
+  padding: 15px 20%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: silver;
+  border-radius: 15px;
+  text-align: center;
+}  
+.devise-comment{
+  color: #999999;
+}
+.devise-note{
+  color: #ff0066;
+}
+
+
+.field{
+  margin: 0 auto;
+  color : #999999;  
+}
+
+/*マイページ*/
+.over-image{
+  position: relative;
+}
+.user-background{
+  background-color: silver;
+  margin-bottom: 80px;
+  height: 150px;
+}
+.user-name{
+  margin-left: 10px;
+}
+.user-image{
+  position: absolute; 
+  top: 70px;
+  left: 10px;
+  width:150px;
+  height:150px;
+  background-color:#fafafa;
+  border: solid 0.5px silver;
+  border-radius: 10px;
+}
+
+.profile-edit{
+  position: absolute;
+  top:150px;
+  right:10px;
+  text-align: right;
+}
+
+.average-result{
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.term-result{
+  margin-left: 15px;
+  text-align: left;
+}
+
+.white-butoon .point-detail{
+  width: 300px;
+  margin: 10px auto;
+  width: 300px;
+}
+
+/*検索ページ*/
+
+.game-result-list{
+  width:100%;
+  text-align: center;
+  height:200px;
+  background-color:#fafafa;
+  border: solid 0.5px silver;
+
+
+}
+
+.confirm-rule{
+  text-align: right;
+}
+
+/*部屋作成・入室画面・対局待ち画面*/
+
+.enter-room{
+  margin: 2 auto;
+  color: silver;
+}
+.red{
+  color: red;
+}
+/*対局画面*/
+.game-room-buttons{
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  margin:0 auto;
+  .white-button.game-record{
+    @include white-button-temp;
+    display: block;
+    text-align: center;
+    width: 110px; 
+  }
+  .silver-button.exit-room{
+    @include silver-button-temp;
+    display: block;
+    text-align: center;
+    width: 110px;
+   }
+}
+.game-record-top{
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+.game-background{
+  background-color: silver;
+  margin-bottom: 80px;
+  height: 300px;
+}
+.left-and-right{
+  display: flex;
+  justify-content: space-around;
+  
+}
+.player.position_front{
+  text-align: center;
+}
+.player.position_mine{
+  text-align: center;
+}
