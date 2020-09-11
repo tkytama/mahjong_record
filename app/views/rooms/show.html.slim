@@ -1,0 +1,39 @@
+.contents-wrapper
+  .enter-room
+    p 部屋をつくりました。 
+    p 部屋番号は
+    p.red #{@room.room_key}
+    p です。
+
+  .waiting-player
+    p 待機中のユーザー
+    .player.first
+      .player-image
+
+      .player-name
+        - if @users[0]
+          p #{@users[0].name}
+    .player.second
+      .player-image
+
+      .player-name
+        - if @users[1]
+          p #{@users[1].name}
+
+    .player.third
+      .player-image
+
+      .player-name
+        - if @users[2]
+          p #{@users[2].name}
+
+    .player.fourth
+      .player-image
+
+      .player-name
+        - if @users[3]
+          p #{@users[3].name}
+
+
+
+
