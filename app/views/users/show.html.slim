@@ -3,7 +3,8 @@
   .over-image
     .user-background
     .user-image
-    p.profile-edit = link_to 'プロフィール編集', edit_user_registration_path 
+      = image_tag @user.image.variant(combine_options: {resize: "150^", gravity: "Center" ,crop: "150x150+0+0", auto_orient: true}) if @user.image.attached? 
+    p.profile-edit = link_to 'プロフィール編集', edit_user_registration_path
   h5.user-name #{@user.name}
  
 .contents-wrapper
