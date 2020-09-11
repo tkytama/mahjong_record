@@ -1,1 +1,30 @@
-h1 hello world
+
+= form_with model: @room, local: true do |f|
+  .form-group
+    = f.label :kaeshi
+    = f.text_field :kaeshi, class: 'form-control'
+  .form-group
+    = f.label :mochi
+    = f.text_field :mochi, class: 'form-control'
+  .form-group
+    = f.label :uma_4to1
+    = f.text_field :uma_4to1, class: 'form-control'
+  .form-group
+    = f.label :uma_3to2
+    = f.text_field :uma_3to2, class: 'form-control'
+  .form-group
+    = f.label :tobi
+    = f.text_field :tobi, class: 'form-control'
+  .form-group
+    = f.label :rate
+    = f.text_field :rate, class: 'form-control'
+  .form-group
+    = f.label :yakitori
+    = f.text_field :yakitori, class: 'form-control'
+  .form-group
+    = f.label :kuitan
+    = f.text_field :kuitan, class: 'form-control'
+  .form-group
+    = f.label :atoduke
+    = f.text_field :atoduke, class: 'form-control'
+  = f.submit nil, class: 'btn btn-primary'
