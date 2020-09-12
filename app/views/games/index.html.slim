@@ -1,0 +1,53 @@
+.game-top
+  .game-background
+    .player.position_front
+      .player-image
+        = link_to room_player_path(@players[3].room_id, @players[3].id)
+          = image_tag @players[3].image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @players[3].image.attached?
+      p #{@players[3].name}
+      p players[3].score
+
+    .left-and-right
+      .player.position_left
+        .player-image
+          = link_to room_player_path(@players[2].room_id, @players[2].id)
+            = image_tag @players[2].image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @players[2].image.attached?
+        p #{@players[2].name}
+        p players[2].score
+
+      .player.position_right
+        .player-image
+          = link_to room_player_path(@players[1].room_id, @players[1].id)
+            = image_tag @players[1].image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @players[1].image.attached?
+        p #{@players[1].name}
+        p players[1].score
+
+    .player.position_mine
+      .player-image
+        = link_to room_player_path(@players[0].room_id, @players[0].id)
+          = image_tag @players[0].image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @players[0].image.attached?
+      p #{@players[0].name}
+      p players[0].score
+
+.border-line
+
+.average-result
+  .score-info
+    = link_to '起家',edit_room_path(params[:room_id]) 
+    p 東
+  .vertical-line
+  .score-info
+    p 得点
+    p 29,000
+  .vertical-line
+  .score-info
+    p ルール
+    p ありあり
+
+.contents-wrapper
+  p.term-result X月X日~X月X日の対局結果
+
+.game-room-buttons
+    p = link_to '終了する', new_room_path, class: 'silver-button exit-room'
+    p = link_to '前の局へ', new_enter_room_path, class: 'white-button game-record'
+    p = link_to '次の局へ', new_enter_room_path, class: 'white-button game-record'
