@@ -27,7 +27,31 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    @users =User.where(room_id: @room.id)
+    @users = User.where(room_id: @room.id)
   end
 
+  def edit
+    @room = Room.find(params[:id])
+  end
+
+  def update
+    @room = Room.find(params[:id])
+    @room.update!(room_params)
+    redirect_to "/rooms/#{@room.id}/games"
+  end
+
+  def game_records
+  end
+
+  def input_game_records
+  end
+
+
+
+  private
+
+  def room_params
+    params.require(:room).permit(:kaeshi, :mochi, :uma_4to1, :uma_3to2, :tobi, :rate, :yakitori, :kuitan, :atoduke)
+  end
+  
 end
