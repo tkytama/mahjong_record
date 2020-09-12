@@ -1,0 +1,16 @@
+.contents-wrapper
+  .player-image
+  = image_tag @player.image.variant(combine_options: {resize: "150^", gravity: "Center" ,crop: "150x150+0+0", auto_orient: true}) if @player.image.attached?
+  p #{@player.name}
+  .average-result
+    .score-info
+      p 平均順位
+      p 2.42
+    .vertical-line
+    .score-info
+      p 平均得点
+      p 29,000
+    .vertical-line
+    .score-info
+      p 平均点
+      p +2.4.
