@@ -2,46 +2,46 @@
   .game-background
     .player.position_front
       .player-image
-        = link_to room_player_path(@players[3].room_id, @players[3].id)
-          = image_tag @players[3].image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @players[3].image.attached?
-      p #{@players[3].name}
-      p players[3].score
+        = link_to room_player_path(params[:room_id], @player_front.id)
+          = image_tag @player_front.image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @player_front.image.attached?
+      p #{@player_front.name}
+      p #{@game_records_now.find_by(user_id: @player_front.id).point}
 
     .left-and-right
       .player.position_left
         .player-image
-          = link_to room_player_path(@players[2].room_id, @players[2].id)
-            = image_tag @players[2].image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @players[2].image.attached?
-        p #{@players[2].name}
-        p players[2].score
+          = link_to room_player_path(@player_left.room_id, @player_left.id)
+            = image_tag @player_left.image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @player_left.image.attached?
+        p #{@player_left.name}
+        p #{@game_records_now.find_by(user_id: @player_left.id).point}
 
       .player.position_right
         .player-image
-          = link_to room_player_path(@players[1].room_id, @players[1].id)
-            = image_tag @players[1].image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @players[1].image.attached?
-        p #{@players[1].name}
-        p players[1].score
+          = link_to room_player_path(@player_right.room_id, @player_right.id)
+            = image_tag @player_right.image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @player_right.image.attached?
+        p #{@player_right.name}
+        p #{@game_records_now.find_by(user_id: @player_right.id).point}
 
     .player.position_mine
       .player-image
-        = link_to room_player_path(@players[0].room_id, @players[0].id)
-          = image_tag @players[0].image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @players[0].image.attached?
-      p #{@players[0].name}
-      p players[0].score
+        = link_to room_player_path(@player_mine.room_id, @player_mine.id)
+          = image_tag @player_mine.image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @player_mine.image.attached?
+      p #{@player_mine.name}
+      p #{@game_records_now.find_by(user_id: @player_mine.id).point}
 
 .border-line
 
 .average-result
   .score-info
-    = link_to '起家',edit_room_path(params[:room_id]) 
+    = link_to '起家',game_records_room_path(params[:room_id]) 
     p 東
   .vertical-line
   .score-info
-    p 得点
+    = link_to '得点',game_records_room_path(params[:room_id]) 
     p 29,000
   .vertical-line
   .score-info
-    p ルール
+    = link_to 'ルール',edit_room_path(params[:room_id]) 
     p ありあり
 
 .contents-wrapper
