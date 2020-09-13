@@ -34,11 +34,11 @@
 .average-result
   .score-info
     = link_to '起家',game_records_room_path(params[:room_id]) 
-    p 東
+    p #{@game_records_now.find_by(user_id: @player_mine.id).seat}
   .vertical-line
   .score-info
     = link_to '得点',game_records_room_path(params[:room_id]) 
-    p 29,000
+    p #{@game_records_now.find_by(user_id: @player_mine.id).point}
   .vertical-line
   .score-info
     = link_to 'ルール',edit_room_path(params[:room_id]) 
