@@ -1,20 +1,22 @@
 .contents-wrapper
   .player.position-front
-    p player.score
-    p player.name
+    .player.position-left
+      p player.score
+      p #{@front_seat.point}
+    
 
   .left-and-right
     .player.position-left
       p player.score
-      p player.name
+      p #{@left_seat.point}
 
     .player.position-right
       p player.score
-      p player.name
+      p #{@right_seat.point}
 
   .player.position-mine
     p player.score
-    p player.name
+    p #{@front_seat.point}
 
   p 変更
   p もどる
