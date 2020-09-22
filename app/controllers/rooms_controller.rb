@@ -64,6 +64,7 @@ class RoomsController < ApplicationController
   def input_game_records
     @room = Room.find(params[:id])
     @room.update(update_room_params)
+    redirect_to "/rooms/#{@room.id}/games"
   end
 
 
