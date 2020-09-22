@@ -16,7 +16,21 @@
 
   .player.position-mine
     p player.score
-    p #{@front_seat.point}
+    p #{@player_seat.point}
+
+  = form_with(model: @room, url: game_records_room_path, locale: true) do |f|
+    = f.fields_for :game_records, local: true do |form|
+      .field
+        - if @room.game_records.pluck(:calculation)[@count] == nil 
+          .point
+            = form.label :point
+            = form.number_field :point
+          .seat
+            = form.label :seat
+            = form.text_field :seat
+        - @count += 1
+    = f.submit
+   
 
   p 変更
   p もどる
