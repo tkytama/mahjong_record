@@ -41,9 +41,29 @@ class RoomsController < ApplicationController
   end
 
   def game_records
+
+    @game_records = GameRecord.where(room_id: params[:id])
+    @game_records_now = @game_records.where(calculation: nil)
+    @player_seat = @game_records_now.find_by(user_id: current_user.id)
+    @player_mine = User.find(current_user.id)
+
+    if @player_seat.seat == "ton"
+      other_player("sha", "pe", "nan")
+    elsif @player_seat.seat == "nan"
+      other_player("pe", "ton", "sha")
+    elsif @player_seat.seat == "sha"
+      other_player("sha", "nan", "pe")
+    else
+      other_player("nan", "sha", "ton")
+    end
+
+    @room = Room.find(params[:id])
+    @count = 0
   end
 
   def input_game_records
+    @room = Room.find(params[:id])
+    @room.update(update_room_params)
   end
 
 
@@ -53,5 +73,22 @@ class RoomsController < ApplicationController
   def room_params
     params.require(:room).permit(:kaeshi, :mochi, :uma_4to1, :uma_3to2, :tobi, :rate, :yakitori, :kuitan, :atoduke)
   end
+
+  def update_room_params
+    params.require(:room).permit(game_records_attributes: [:point, :seat, :id])
+  end
   
+  def player_direction(direction)
+    @game_records_now.find_by(seat: direction)
+  end
+
+  def other_player(front, left, right)
+    @front_seat = player_direction(front)
+    @left_seat = player_direction(left)
+    @right_seat = player_direction(right)
+    @player_front = User.find(player_direction(front).user_id)
+    @player_left = User.find(player_direction(left).user_id)
+    @player_right = User.find(player_direction(right).user_id)
+  end
+
 end

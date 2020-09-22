@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   def index
-    @game_records = GameRecord.where(room_id: 18)
+    @game_records = GameRecord.where(room_id: params[:room_id])
     @game_records_now = @game_records.where(calculation: nil)
     @player = @game_records_now.find_by(user_id: current_user.id)
     @player_mine = User.find(current_user.id)
@@ -31,6 +31,7 @@ class GamesController < ApplicationController
   def destroy
   end
 
+  private
  
     def player_direction(direction)
       @game_records_now.find_by(seat: direction)
