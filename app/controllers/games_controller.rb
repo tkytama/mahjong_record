@@ -10,7 +10,7 @@ class GamesController < ApplicationController
     elsif @player.seat == "nan"
       other_player("pe", "ton", "sha")
     elsif @player.seat == "sha"
-      other_player("sha", "nan", "pe")
+      other_player("ton", "nan", "pe")
     else
       other_player("nan", "sha", "ton")
     end

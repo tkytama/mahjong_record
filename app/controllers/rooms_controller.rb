@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  before_action :check_seat, only: [:input_game_records]
+
   def new
     @room = Room.new
   end
@@ -52,7 +54,7 @@ class RoomsController < ApplicationController
     elsif @player_seat.seat == "nan"
       other_player("pe", "ton", "sha")
     elsif @player_seat.seat == "sha"
-      other_player("sha", "nan", "pe")
+      other_player("ton", "nan", "pe")
     else
       other_player("nan", "sha", "ton")
     end
@@ -63,8 +65,11 @@ class RoomsController < ApplicationController
 
   def input_game_records
     @room = Room.find(params[:id])
-    @room.update(update_room_params)
-    redirect_to "/rooms/#{@room.id}/games"
+    seats = @room.game_records.pluck(:seat)
+    if seats.include?("ton") && seats.include?("nan") && seats.include?("sha") && seats.include?("pe")
+      @room.update(update_room_params)
+      redirect_to "/rooms/#{@room.id}/games"
+    end
   end
 
 
@@ -92,4 +97,10 @@ class RoomsController < ApplicationController
     @player_right = User.find(player_direction(right).user_id)
   end
 
+  def check_seat
+    seats = @room.game_records.pluck(:seat)
+    unless seats.include?("ton") && seats.include?("nan") && seats.include?("sha") && seats.include?("pe")
+      @room.update(update_room_params)
+    end
+  end
 end
