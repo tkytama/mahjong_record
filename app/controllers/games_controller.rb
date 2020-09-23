@@ -31,6 +31,10 @@ class GamesController < ApplicationController
   def destroy
   end
 
+  def confirm_tobi_yakitori
+  end
+
+
   private
  
     def player_direction(direction)

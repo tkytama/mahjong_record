@@ -1,0 +1,44 @@
+doctype html
+html
+  head
+    title
+      | mahjong_record
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    header
+      nav.navbar.navbar-expand-lg.navbar-light.bg-light
+        a.navbar-brand href=mahjong_record_top_path 麻雀レコード
+        button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+          span.navbar-toggler-icon
+      
+        .collapse.navbar-collapse#navbarNav
+          ul.navbar-nav
+            li.nav-item
+              a.nav-link href=mahjong_record_top_path トップ画面
+            li.nav-item.invalid-line
+              a=link_to 'ログアウト', destroy_user_session_path, method: :delete,data: { confirm: 'ログアウトしてもよろしいですか？'}
+            li.nav-item
+             a.nav-link href=new_user_session_path ログイン
+            li.nav-item
+              a.nav-link href=new_user_registration_path 新規登録
+            li.nav-item
+              a.nav-link href="#" 麻雀レコードとは？
+      .container-fluid
+        = yield
+
+      footer
+        nav
+          ul.navbar-nav
+            li.navitem
+              a.nav-link href=mahjong_record_top_path トップ画面
+            li.navitem
+              a.nav-link href=new_user_session_path ログイン
+            li.navitem
+              a.nav-link href="#" 利用規約
+            li.navitem
+              a.nav-link href="#" プライバシー規約
+          small.navitem. @tkytamanegi
+

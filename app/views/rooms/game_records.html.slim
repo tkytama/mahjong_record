@@ -1,49 +1,32 @@
 .contents-wrapper
-  .player.position-front
-    .player.position-left
-      p #{@front_seat.point}
-      p #{@front_seat.seat}
-      p #{@player_front.name}
-    
-
-  .left-and-right
-    .player.position-left
-      p #{@left_seat.point}
-      p #{@left_seat.seat}
-      p #{@player_left.name}
-
-    .player.position-right
-      p #{@right_seat.point}
-      p #{@right_seat.seat}
-      p #{@player_right.name}
-
-  .player.position-mine
-    p #{@player_seat.point}
-    p #{@player_seat.seat}
-    p #{@player_mine.name}
+  .top-space
 
   = form_with(model: @room, url: game_records_room_path, locale: true) do |f|
     = f.fields_for :game_records, local: true do |form|
       .field
         - if @room.game_records.pluck(:calculation)[@count] == nil 
-          - if @room.game_records.pluck(:seat)[@count] == "ton" 
-            .point_ton
+          - if @room.game_records.pluck(:seat)[@count] == @front_seat.seat
+            .player1.position_front
               = form.number_field :point
-              = form.text_field :seat,size: 1
-          - elsif @room.game_records.pluck(:seat)[@count] == "nan"
-            .point_nan 
+              = form.select :seat, [ ["東","ton"],["南","nan"],["西","sha"],["北","pe"]]
+              p #{@player_front.name}
+          - elsif @room.game_records.pluck(:seat)[@count] == @left_seat.seat
+            .player1.position_left
               = form.number_field :point
-              = form.text_field :seat,size: 1
-          - elsif @room.game_records.pluck(:seat)[@count] == "sha"
-            .point_sha 
+              = form.select :seat, [ ["東","ton"],["南","nan"],["西","sha"],["北","pe"]]
+              p #{@player_left.name}
+          - elsif @room.game_records.pluck(:seat)[@count] == @right_seat.seat
+            .player1.position_right
               = form.number_field :point
-              = form.text_field :seat,size: 1
-          - elsif @room.game_records.pluck(:seat)[@count] == "pe"
+              = form.select :seat, [ ["東","ton"],["南","nan"],["西","sha"],["北","pe"]]
+              p #{@player_right.name}
+          - elsif @room.game_records.pluck(:seat)[@count] == @player_seat.seat
+            .player1.position_mine
               = form.number_field :point
-              = form.text_field :seat,size: 1
-        - @count += 1
-    = f.submit
-   
+              = form.select :seat, [ ["東","ton"],["南","nan"],["西","sha"],["北","pe"]]
+              p #{@player_mine.name}
+          - @count += 1
+    = f.submit   
 
   p 変更
   p もどる

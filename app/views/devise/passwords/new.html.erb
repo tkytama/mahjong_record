@@ -1,0 +1,19 @@
+<div class="devise-wrapper">
+  <div class="devise-comment">	
+    <h6>以下のメールアドレスに</h6>
+    <h6>パスワード再設定のリンクを送信します</h6>
+  </div>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",size: :"30" %>
+    </div>
+
+    <div class="white-button">
+      <%= f.submit "送信" %>
+    </div>
+  <% end %>
+  <%= render "devise/shared/links" %>
+</div>

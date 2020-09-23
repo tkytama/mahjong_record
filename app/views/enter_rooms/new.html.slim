@@ -1,0 +1,16 @@
+.contents-wrapper
+  .room_number
+
+    = form_with url: enter_rooms_url do |f|
+      .form-group
+        = f.label :room_key
+        = f.text_field :room_key, clss: 'form-control', id: 'rooms_room_key'
+
+      = f.submit 
+
+    p = link_to '部屋をつくる', new_room_path, class: 'silver-button make-room'
+
+    p もどる
+
+    p 部屋をつくるのはこちら
+
