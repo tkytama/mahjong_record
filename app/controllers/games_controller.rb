@@ -23,6 +23,9 @@ class GamesController < ApplicationController
   end
 
   def edit
+    @game_records = GameRecord.where(room_id: params[:room_id])
+    @game_records_now = @game_records.where(calculation: nil)
+    @count = @game_records_now[0].count  
   end
 
   def update
@@ -32,6 +35,9 @@ class GamesController < ApplicationController
   end
 
   def confirm_tobi_yakitori
+    @game_records = GameRecord.where(room_id: params[:room_id])
+    @game_records_now = @game_records.where(calculation: nil)
+    @count = @game_records_now[0].count  
   end
 
 
