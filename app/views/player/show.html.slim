@@ -9,7 +9,7 @@
     .vertical-line
     .score-info
       p 平均得点
-      p 29,000
+      p #{@player_game_records.average(:point).to_f}
     .vertical-line
     .score-info
       p 平均点
