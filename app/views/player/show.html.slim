@@ -5,7 +5,7 @@
   .average-result
     .score-info
       p 平均順位
-      p 2.42
+      p #{@player_game_records.average(:rank).to_f}
     .vertical-line
     .score-info
       p 平均得点
@@ -13,4 +13,4 @@
     .vertical-line
     .score-info
       p 平均点
-      p +2.4.
+      p #{@player_game_records.average(:rate).to_f}
