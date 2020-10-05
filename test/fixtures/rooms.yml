@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  room_key: 1
+  kaeshi: 1
+  mochi: 1
+  uma_4to1: 1
+  uma_3to2: 1
+  tobi: 1
+  rate: 1
+  yakitori: 1
+  kuitan: false
+  atoduke: MyString
+  boolean: MyString
+
+two:
+  room_key: 1
+  kaeshi: 1
+  mochi: 1
+  uma_4to1: 1
+  uma_3to2: 1
+  tobi: 1
+  rate: 1
+  yakitori: 1
+  kuitan: false
+  atoduke: MyString
+  boolean: MyString

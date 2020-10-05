@@ -1,2 +1,15 @@
-h1 Games#edit
-p Find me in app/views/games/edit.html.slim
+.contents-wrapper
+  .content
+    p #{@count}半荘目を終わります。
+    p 以下の点数でよろしいですか？
+
+  .yakitori
+    - @game_records_now.each do |user|
+      .result
+        p.name #{User.find(user.user_id).name}
+        p.score 25000
+        p.rate +2
+ 
+  .button
+    p 焼き鳥の人を変更
+    p もどる

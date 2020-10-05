@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
   
   resources :rooms, only: [:new, :create, :show, :edit, :update] do
-    resources :games, only: [:new, :create, :edit, :update, :index, :delete] do
+    resources :games, only: [:new, :create, :edit, :update, :index, :delete], param: :count do
       member do
 	get :confirm_tobi_yakitori
 	put ":confirm_tobi_yakitori" => "games#input_tobi_yakitori"
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     member do
       get :enter
       put :entering      
-      put ":game_records" => "rooms#input_game_records"
+      patch "game_records" => "rooms#input_game_records"
       get :game_records
     end
 
