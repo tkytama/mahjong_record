@@ -1,24 +1,24 @@
-# README
+## 概要
+- サービス名 麻雀レコード
+- 麻雀の対局結果を記録しておいて共有できるサービス
+- 20代～30代の麻雀を2か月に1回以上する人(中級者)向け
+### アプリ作成の背景
+- 麻雀をしているとき、「麻雀をプレイするアプリはたくさんあるけど、麻雀の対局結果を残したりシェアできるアプリってないよね。」という話をよく聞いた
+- 話を掘り下げてみると、麻雀をした後に自分が今月どれだけ１着を取っているのか、1局平均で何点+になっているのかなど、対局の記録を皆(自分を含めて)気にしていることがわかった
+- そこで、自分と仲間向けに作ってみようと思い作成を開始
+### アプリでできること
+- 対局終了時の得点、順位、座席、情報、対局のルールといった対局情報の記録
+- 複数の対局情報を集計して一定期間の平均得点、平均順位などの算出
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Version
+- ruby 2.5.1
+- rails 5.2.4.3
+- psql 12.4
 
-Things you may want to cover:
+## 環境構築
+## アプリ初期設定
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+$bundle exec rails db:create
+$bundle exec rails db:migrate
+## seedの中身は後日いれる
+$bundle exec rails db:seed
