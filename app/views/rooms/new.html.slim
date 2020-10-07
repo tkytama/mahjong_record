@@ -2,6 +2,6 @@
   .room_number
 
     = button_to '部屋をつくる', rooms_path ,method: :post
-    p もどる
+    p = link_to "もどる", :back
 
     p 部屋をつくるのはこちら
