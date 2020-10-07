@@ -50,4 +50,4 @@
 .game-room-buttons
     p = link_to '終了する', new_room_path, class: 'silver-button exit-room'
     p = link_to '前の局へ', new_enter_room_path, class: 'white-button game-record'
-    p = link_to '次の局へ', new_enter_room_path, class: 'white-button game-record'
+    p = link_to '次の局へ', confirm_tobi_yakitori_room_game_path(count: @count), class: 'white-button game-record'
