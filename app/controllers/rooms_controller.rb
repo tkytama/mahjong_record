@@ -66,8 +66,11 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     seats = @room.game_records.pluck(:seat)
     if seats.include?("ton") && seats.include?("nan") && seats.include?("sha") && seats.include?("pe")
-      @room.update(update_room_params)
-      redirect_to "/rooms/#{@room.id}/games"
+      if @room.update(update_room_params)
+        redirect_to "/rooms/#{@room.id}/games"
+      else
+        redirect_to game_records_room_path(@room)
+      end
     end
   end
 
