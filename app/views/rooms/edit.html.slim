@@ -23,8 +23,8 @@
     = f.text_field :yakitori, class: 'form-control'
   .form-group
     = f.label :kuitan
-    = f.text_field :kuitan, class: 'form-control'
+    = f.select:kuitan, [["あり", true],["なし", false]], class: 'form-control'
   .form-group
     = f.label :atoduke
-    = f.text_field :atoduke, class: 'form-control'
+    = f.select :atoduke, [["あり", true],["なし", false]],class: 'form-control'
   = f.submit nil, class: 'btn btn-primary'
