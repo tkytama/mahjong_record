@@ -1,19 +1,51 @@
 .contents-wrapper
   h6 飛び焼き鳥確認画面
   p  #{@count}局目の結果を精算します。
-  p ○○が飛びました。
-  p だれに点数を加算しますか？
-  p player1
-  p player2
-  p player3
+
+  .tobi
+    - @game_records_now.each do |record|
+      - if record.point < 0
+        p #{record.user.name}が飛びました。
+        p 点数を加算するプレイヤーを選んでください。
+
+  - if @game_records_now[0].point < 0 || @game_records_now[1].point < 0 || @game_records_now[2].point < 0 || @game_records_now[3].point < 0 
+    - recordNum = 0
+    = form_with(model: @room, url: confirm_tobi_yakitori_room_game_path, local: true) do |f|
+      = f.fields_for :game_records, local: true do |form|
+        .field
+          - game_record = form.object
+          a #{@game_records_now[recordNum].user.name}
+          - next if game_record.calculation?
+          - if game_record.seat == 'ton'
+            .player1
+              = form.select :tobashi, [ ["とばしました。",true],["とばしていません。",false]]
+          - if game_record.seat == 'nan'
+            .player1
+              = form.select :tobashi, [ ["とばしました。",true],["とばしていません。",false]]
+          - if game_record.seat == 'sha'
+            .player1
+              = form.select :tobashi,  [ ["とばしました。",true],["とばしていません。",false]]
+          - if game_record.seat == 'pe'
+            .player1
+              = form.select :tobashi,  [ ["とばしました。",true],["とばしていません。",false]]
+        - recordNum += 1
+      = f.submit
+  p  　
 
   .yakitori
-    p ○○が焼き鳥です。
-    p 以下のプレイヤーに
-    p 点数追加してもよろしいですか？
-    p player1
-    p player2
-    p player3
+    - if @yakitori_count > 1
+      -  @game_records_now.each do |f|
+        - if f.yakitori
+          a #{f.user.name}　 
+      p が焼き鳥です
+      p 以下のように精算を行います。 
+      -  @game_records_now.each do |f|
+        - if f.yakitori
+          p #{f.user.name} - #{@room.yakitori * (4 - @yakitori_count)}
+        - else 
+          p #{f.user.name} + #{@room.yakitori * @yakitori_count}
+    - else
+      p 焼き鳥のプレイヤーはいませんでした。
 
   .button
     p 焼き鳥の人を変更
