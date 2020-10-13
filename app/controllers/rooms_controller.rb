@@ -64,10 +64,30 @@ class RoomsController < ApplicationController
 
   def input_game_records
     @room = Room.find(params[:id])
+    @game_records = GameRecord.where(room_id: params[:id])
+    @game_records_now = @game_records.where(calculation: nil)
+    @player_seat = @game_records_now.find_by(user_id: current_user.id)
+    @player_mine = User.find(current_user.id)
+
+    if @player_seat.seat == "ton"
+      other_player("sha", "pe", "nan")
+    elsif @player_seat.seat == "nan"
+      other_player("pe", "ton", "sha")
+    elsif @player_seat.seat == "sha"
+      other_player("ton", "nan", "pe")
+    else
+      other_player("nan", "sha", "ton")
+    end
+
+    @room = Room.find(params[:id])
+    @count = 0
     seats = @room.game_records.pluck(:seat)
     if seats.include?("ton") && seats.include?("nan") && seats.include?("sha") && seats.include?("pe")
-      @room.update(update_room_params)
-      redirect_to "/rooms/#{@room.id}/games"
+      if @room.update(update_room_params) 
+        redirect_to "/rooms/#{@room.id}/games"
+      else 
+	render 'rooms/game_records' 
+      end
     end
   end
 

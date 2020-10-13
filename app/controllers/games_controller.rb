@@ -2,6 +2,7 @@ class GamesController < ApplicationController
   def index
     @game_records = GameRecord.where(room_id: params[:room_id])
     @game_records_now = @game_records.where(calculation: nil)
+    @count = @game_records_now[0].count  
     @player = @game_records_now.find_by(user_id: current_user.id)
     @player_mine = User.find(current_user.id)
 
@@ -23,9 +24,23 @@ class GamesController < ApplicationController
   end
 
   def edit
+    @room = Room.find(params[:room_id])
     @game_records = GameRecord.where(room_id: params[:room_id])
     @game_records_now = @game_records.where(calculation: nil)
     @count = @game_records_now[0].count  
+    @player = @game_records_now.find_by(user_id: current_user.id)
+    @player_mine = User.find(current_user.id)
+
+    if @player.seat == "ton"
+      other_player("sha", "pe", "nan")
+    elsif @player.seat == "nan"
+      other_player("pe", "ton", "sha")
+    elsif @player.seat == "sha"
+      other_player("ton", "nan", "pe")
+    else
+      other_player("nan", "sha", "ton")
+    end
+    @yakitori_count = @game_records_now.where(yakitori: true).count
   end
 
   def update
@@ -35,9 +50,26 @@ class GamesController < ApplicationController
   end
 
   def confirm_tobi_yakitori
+    @room = Room.find(params[:room_id])
     @game_records = GameRecord.where(room_id: params[:room_id])
     @game_records_now = @game_records.where(calculation: nil)
     @count = @game_records_now[0].count  
+
+
+    @player = @game_records_now.find_by(user_id: current_user.id)
+    @player_mine = User.find(current_user.id)
+
+    if @player.seat == "ton"
+      other_player("sha", "pe", "nan")
+    elsif @player.seat == "nan"
+      other_player("pe", "ton", "sha")
+    elsif @player.seat == "sha"
+      other_player("ton", "nan", "pe")
+    else
+      other_player("nan", "sha", "ton")
+    end
+    @yakitori_count = @game_records_now.where(yakitori: true).count
+
   end
 
 
