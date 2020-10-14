@@ -24,9 +24,11 @@ class GamesController < ApplicationController
   end
 
   def edit
+    @room = Room.find(params[:room_id])
     @game_records = GameRecord.where(room_id: params[:room_id])
     @game_records_now = @game_records.where(calculation: nil)
     @count = @game_records_now[0].count  
+    @yakitori_count = @game_records_now.pluck(:yakitori).count(true)
   end
 
   def update
