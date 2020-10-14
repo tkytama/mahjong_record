@@ -32,6 +32,27 @@ class GamesController < ApplicationController
   end
 
   def update
+    @room = Room.find(params[:room_id])
+    @game_records = GameRecord.where(room_id: params[:room_id])
+    @game_records_now = @game_records.where(calculation: nil)
+    @count = @game_records_now[0].count  
+
+    if @room.update(update_room_params)
+      @game_records_now.each do |game_record|
+        game_record.calculation = true
+        game_record.save
+      end
+      game_number =@count +1
+      player1 = GameRecord.new(user_id: @game_records_now[0].user_id ,room_id: @room.id ,game_number: game_number,count: game_number, point: 25000, seat: "ton")
+      player2 = GameRecord.new(user_id: @game_records_now[1].user_id ,room_id: @room.id ,game_number: game_number,count: game_number, point: 25000, seat: "nan")
+      player3 = GameRecord.new(user_id: @game_records_now[2].user_id ,room_id: @room.id ,game_number: game_number,count: game_number, point: 25000, seat: "sha")
+      player4 = GameRecord.new(user_id: @game_records_now[3].user_id ,room_id: @room.id ,game_number: game_number,count: game_number, point: 25000, seat: "pe")
+      player1.save
+      player2.save
+      player3.save
+      player4.save
+      enddirect_to "/rooms/#{@room.id}/games"
+    end
   end
 
   def destroy
@@ -118,7 +139,7 @@ class GamesController < ApplicationController
     end
 
     def update_room_params
-      params.require(:room).permit(game_records_attributes: [:point, :seat, :id])
+      params.require(:room).permit(game_records_attributes: [:point, :seat, :id, :rate])
     end
 
     def other_player(front, left, right)
