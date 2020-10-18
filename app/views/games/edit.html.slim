@@ -5,7 +5,7 @@
 
   .yakitori
 
-  = form_with(model: @room, url: edit_room_game_path, local: true) do |f|
+  = form_with(model: @room, url: room_game_path, local: true) do |f|
     - recordNum = 0
     = f.fields_for :game_records, local: true do |form|
       .field
@@ -26,7 +26,7 @@
           - point += (@room.uma_4to1 + (@room.kaeshi / 1000))
         - if @game_records_now[recordNum].yakitori 
           - point -= (@room.yakitori * (4 - @yakitori_count)) 
-        - else
+        - elsif @game_records_now[recordNum].yakitori == false && @game_records_now.where(yakitori: true).count > 0
           - point += (@room.yakitori * (4 - @yakitori_count))
         - if @game_records_now[recordNum].tobashi
           - point += @room.tobi
