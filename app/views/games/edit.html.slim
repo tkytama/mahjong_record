@@ -13,9 +13,9 @@
         - next if game_record.calculation?
         a #{@game_records_now[recordNum].user.name}
         - if @game_records_now[recordNum].point >= 0
-          - point = ((@game_records_now[recordNum].point - 100 ) / 1000).round(-1) - (@room.kaeshi / 1000)
+          - point = ((@game_records_now[recordNum].point - 100 ).round(-3) / 1000) - (@room.kaeshi / 1000)
         - else
-          - point = ((@game_records_now[recordNum].point + 100 ) / 1000).round(-1) - @room.tobi - (@room.kaeshi / 1000)
+          - point = ((@game_records_now[recordNum].point + 100 ).round(-3) / 1000) - @room.tobi - (@room.kaeshi / 1000)
         - if @game_records_now[recordNum].point ==  @game_records_now.pluck(:point).sort.reverse[3]
           - point -= @room.uma_4to1
         - elsif @game_records_now[recordNum].point ==  @game_records_now.pluck(:point).sort.reverse[2]
@@ -23,7 +23,7 @@
         - elsif @game_records_now[recordNum].point ==  @game_records_now.pluck(:point).sort.reverse[1]
           - point += @room.uma_3to2
         - else
-          - point += (@room.uma_4to1 + (@room.kaeshi / 1000))
+          - point += (@room.uma_4to1 + ((@room.kaeshi - @room.mochi) * 4 / 1000))
         - if @game_records_now[recordNum].yakitori 
           - point -= (@room.yakitori * (4 - @yakitori_count)) 
         - elsif @game_records_now[recordNum].yakitori == false && @game_records_now.where(yakitori: true).count > 0
