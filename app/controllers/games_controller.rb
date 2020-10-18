@@ -51,7 +51,7 @@ class GamesController < ApplicationController
       player2.save
       player3.save
       player4.save
-      enddirect_to "/rooms/#{@room.id}/games"
+      redirect_to "/rooms/#{@room.id}/games"
     end
   end
 
