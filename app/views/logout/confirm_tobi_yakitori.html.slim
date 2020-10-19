@@ -37,4 +37,25 @@
       - recordNum += 1
     = f.submit
   p  　
-n
+
+
+
+  .yakitori
+    - if @yakitori_count > 1
+      -  @game_records_now.each do |f|
+        - if f.yakitori
+          a #{f.user.name}　
+      p が焼き鳥です
+      p 以下のように精算を行います。
+      -  @game_records_now.each do |f|
+        - if f.yakitori
+          p #{f.user.name} - #{@room.yakitori * (4 - @yakitori_count)}
+        - else
+          p #{f.user.name} + #{@room.yakitori * @yakitori_count}
+    - else
+      p 焼き鳥のプレイヤーはいませんでした。
+
+  .button
+    p 焼き鳥の人を変更
+    p = link_to "確認する",edit_room_game_path(count: @count)
+    p = link_to "もどる", :back
