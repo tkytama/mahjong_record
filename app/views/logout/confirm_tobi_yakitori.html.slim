@@ -1,1 +1,40 @@
-h5 hello 
+.contents-wrapper
+
+  h6 終了時飛び焼き鳥確認画面
+
+  p #{@count}局目の結果を精算します。
+
+  .tobi
+    -
+    - @game_records_now.each do |record|
+      - if record.point < 0
+        p #{record.user.name}が飛びました。
+        p 点数を加算するプレイヤーを選んでください。
+
+
+  - recordNum = 0
+  = form_with(model: @room, url: confirm_tobi_yakitori_room_game_path, local: true) do |f|
+    = f.fields_for :game_records, local: true do |form|
+      .field
+        - game_record = form.object
+        - next if game_record.calculation?
+        - if game_record.seat == 'ton'
+          .player1
+            a #{@game_records_now[recordNum].user.name}
+            = form.select :tobashi, [ ["とばしました。",true],["とばしていません。",false]]
+        - if game_record.seat == 'nan'
+          .player1
+            a #{@game_records_now[recordNum].user.name}
+            = form.select :tobashi, [ ["とばしました。",true],["とばしていません。",false]]
+        - if game_record.seat == 'sha'
+          .player1
+            a #{@game_records_now[recordNum].user.name}
+            = form.select :tobashi,  [ ["とばしました。",true],["とばしていません。",false]]
+        - if game_record.seat == 'pe'
+          .player1
+            a #{@game_records_now[recordNum].user.name}
+            = form.select :tobashi,  [ ["とばしました。",true],["とばしていません。",false]]
+      - recordNum += 1
+    = f.submit
+  p  　
+n
