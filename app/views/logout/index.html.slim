@@ -1,3 +1,10 @@
-h5 ｘｘｘ局目の結果を保存しますか。
 
+.contents-wrapper
+
+  h5 ｘｘｘ局目の結果を保存しますか。
+
+
+  .game-room-buttons
+    p = link_to '保存しない', room_logout_index_path, class: 'silver-button exit-room'
+    p = link_to '保存する', confirm_tobi_yakitori_room_logout_path(count: @count), class: 'white-button game-record'
 
