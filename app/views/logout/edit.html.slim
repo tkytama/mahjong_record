@@ -1,1 +1,59 @@
-h6 終了時得点精算画面 
+
+.contents-wrapper
+
+  h6 終了時得点精算画面 
+
+
+  #{@count}半荘目を終わります。
+    p 以下の点数でよろしいですか？
+
+  .yakitori
+
+  = form_with(model: @room, url: room_game_path, local: true) do |f|
+    - recordNum = 0
+    = f.fields_for :game_records, local: true do |form|
+      .field
+        - game_record = form.object
+        - next if game_record.calculation?
+        a #{@game_records_now[recordNum].user.name}
+        - if @game_records_now[recordNum].point >= 0
+          - point = ((@game_records_now[recordNum].point - 100 ).round(-3) / 1000) - (@room.kaeshi / 1000)
+        - else
+          - point = ((@game_records_now[recordNum].point + 100 ).round(-3) / 1000) - @room.tobi - (@room.kaeshi / 1000)
+        - if @game_records_now[recordNum].point ==  @game_records_now.pluck(:point).sort.reverse[3]
+          - point -= @room.uma_4to1
+        - elsif @game_records_now[recordNum].point ==  @game_records_now.pluck(:point).sort.reverse[2]
+          - point -= @room.uma_3to2
+        - elsif @game_records_now[recordNum].point ==  @game_records_now.pluck(:point).sort.reverse[1]
+          - point += @room.uma_3to2
+        - else
+          - point += (@room.uma_4to1 + ((@room.kaeshi - @room.mochi) * 4 / 1000))
+        - if @game_records_now[recordNum].yakitori
+          - point -= (@room.yakitori * (4 - @yakitori_count))
+        - elsif @game_records_now[recordNum].yakitori == false && @game_records_now.where(yakitori: true).count > 0
+          - point += (@room.yakitori * (4 - @yakitori_count))
+        - if @game_records_now[recordNum].tobashi
+          - point += @room.tobi
+
+        - if game_record.seat == 'ton'
+          .player1
+            = form.number_field :point
+            = form.number_field :rate, value: point
+        - if game_record.seat == 'nan'
+          .player1
+            = form.number_field :point
+            = form.number_field :rate, value: point
+        - if game_record.seat == 'sha'
+          .player1
+            = form.number_field :point
+            = form.number_field :rate, value: point
+        - if game_record.seat == 'pe'
+          .player1
+            = form.number_field :point
+            = form.number_field :rate, value: point
+      - recordNum += 1
+    = f.submit
+
+  .buttmn
+    p 焼き鳥の人を変更
+    p = link_to "もどる", :back
