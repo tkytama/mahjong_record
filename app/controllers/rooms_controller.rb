@@ -100,7 +100,7 @@ class RoomsController < ApplicationController
   end
 
   def update_room_params
-    params.require(:room).permit(game_records_attributes: [:point, :seat, :id])
+    params.require(:room).permit(game_records_attributes: [:point, :seat, :yakitori, :id])
   end
   
   def player_direction(direction)
