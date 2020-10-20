@@ -42,7 +42,14 @@
   .vertical-line
   .score-info
     = link_to 'ルール',edit_room_path(params[:room_id]) 
-    p ありあり
+    - if @room.kuitan = true && @room.atoduke = true
+      p ありあり
+    - elsif @room.kuitan = true && @room.atoduke = false
+      p ありなし
+    - elsif @room.kuitan = false && @room.atoduke = true
+      p なしあり
+    - else
+      p なしなし
 
 .contents-wrapper
   p.term-result X月X日~X月X日の対局結果
