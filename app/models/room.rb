@@ -26,18 +26,18 @@ class Room < ApplicationRecord
     game_records
       .select{ |game_record| game_record.calculation == nil }
       .each do |game_records|
-      if game_records.seat = "ton"
+      if game_records.seat == "ton"
         count_ton += 1
-      elsif game_records.seat = "nan"
+      elsif game_records.seat == "nan"
         count_nan += 1
-      elsif game_records.seat = "sha"
+      elsif game_records.seat == "sha"
 	count_sha += 1
       else
 	count_pe += 1
       end
     end
+    
     errors.add(:base, '東、南、西、北を一回ずつ入力してください') if count_nan == 0 || count_ton == 0 || count_sha == 0 || count_pe == 0
-
   end
 
 end

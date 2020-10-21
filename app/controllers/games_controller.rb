@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   def index
+    @room = Room.find(params[:room_id])
     @game_records = GameRecord.where(room_id: params[:room_id])
     @game_records_now = @game_records.where(calculation: nil)
     @count = @game_records_now[0].count  
@@ -146,7 +147,7 @@ class GamesController < ApplicationController
       @front_seat = player_direction(front)
       @left_seat = player_direction(left)
       @right_seat = player_direction(right)
-      @player_front = User.find(player_direction(front).user_id)
+      @player_front = User.find(@front_seat.user.id)
       @player_left = User.find(player_direction(left).user_id)
       @player_right = User.find(player_direction(right).user_id)
     end

@@ -13,14 +13,14 @@ Rails.application.routes.draw do
     resources :games, only: [:new, :create, :edit, :update, :index, :delete], param: :count do
       member do
 	get :confirm_tobi_yakitori
-	put ":confirm_tobi_yakitori" => "games#input_tobi_yakitori"
+	patch ":confirm_tobi_yakitori" => "games#input_tobi_yakitori"
       end
     end
 
-    resources :logout, only: [:new, :create] do
+    resources :logout, only: [:new, :create, :edit, :update,:index, :destroy],param: :count do
       member do
         get :confirm_tobi_yakitori
-	put ":confirm_tobi_yakitori" => "logout#input_tobi_yakitori"
+	patch ":confirm_tobi_yakitori" => "logout#input_tobi_yakitori"
       end
     end
 

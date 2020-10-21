@@ -1,5 +1,19 @@
 class LogoutController < ApplicationController
-  
+ 
+  def destroy
+    @room = Room.find(params[:room_id])
+    @game_records = GameRecord.where(room_id: params[:room_id])
+    @game_records_now = @game_records.where(calculation: nil)
+    @count = @game_records_now[0].count
+    
+    @game_records_now.each do |game_record|
+      game_record.destroy
+    end
+
+    redirect_to user_path
+    
+  end
+
   def edit
     @room = Room.find(params[:room_id])
     @game_records = GameRecord.where(room_id: params[:room_id])

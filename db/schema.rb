@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_174931) do
+ActiveRecord::Schema.define(version: 2020_10_13_144948) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -43,6 +43,10 @@ ActiveRecord::Schema.define(version: 2020_09_23_174931) do
     t.integer "game_number", null: false
     t.boolean "calculation"
     t.integer "count"
+    t.integer "rank"
+    t.integer "rate"
+    t.boolean "yakitori"
+    t.boolean "tobashi"
     t.index ["room_id"], name: "index_game_records_on_room_id"
     t.index ["user_id"], name: "index_game_records_on_user_id"
   end
