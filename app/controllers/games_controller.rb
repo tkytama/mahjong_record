@@ -44,15 +44,17 @@ class GamesController < ApplicationController
         game_record.save
       end
       game_number =@count +1
-      player1 = GameRecord.new(user_id: @game_records_now[0].user_id ,room_id: @room.id ,game_number: game_number,count: game_number, point: 25000, seat: "ton")
-      player2 = GameRecord.new(user_id: @game_records_now[1].user_id ,room_id: @room.id ,game_number: game_number,count: game_number, point: 25000, seat: "nan")
-      player3 = GameRecord.new(user_id: @game_records_now[2].user_id ,room_id: @room.id ,game_number: game_number,count: game_number, point: 25000, seat: "sha")
-      player4 = GameRecord.new(user_id: @game_records_now[3].user_id ,room_id: @room.id ,game_number: game_number,count: game_number, point: 25000, seat: "pe")
+      player1 = GameRecord.new(user_id: @game_records_now[0].user_id ,room_id: @room.id ,game_number: game_number,count: game_number, point: 25000,rate: 0, seat: "ton")
+      player2 = GameRecord.new(user_id: @game_records_now[1].user_id ,room_id: @room.id ,game_number: game_number,count: game_number, point: 25000,rate: 0, seat: "nan")
+      player3 = GameRecord.new(user_id: @game_records_now[2].user_id ,room_id: @room.id ,game_number: game_number,count: game_number, point: 25000,rate: 0, seat: "sha")
+      player4 = GameRecord.new(user_id: @game_records_now[3].user_id ,room_id: @room.id ,game_number: game_number,count: game_number, point: 25000,rate: 0, seat: "pe")
       player1.save
       player2.save
       player3.save
       player4.save
       redirect_to "/rooms/#{@room.id}/games"
+    else
+      render :edit
     end
   end
 
@@ -147,7 +149,7 @@ class GamesController < ApplicationController
       @front_seat = player_direction(front)
       @left_seat = player_direction(left)
       @right_seat = player_direction(right)
-      @player_front = User.find(@front_seat.user.id)
+      @player_front = User.find(player_direction(front).user_id)
       @player_left = User.find(player_direction(left).user_id)
       @player_right = User.find(player_direction(right).user_id)
     end
