@@ -64,7 +64,7 @@
       td #{@player_left.name}
       td #{@player_right.name}
     - game_number = 1
-    - @count.times do
+    - (@count - 1).times do
       tr
         td #{game_number} 
         td #{@game_records.where(count: game_number).find_by(user_id: @player_mine.id).point}
