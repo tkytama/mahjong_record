@@ -6,6 +6,7 @@ class Room < ApplicationRecord
   
   validate :require_total_point
   validate :require_player_seat
+  validate :require_total_rate
 
   def require_total_point
     total_point = 0
@@ -39,5 +40,14 @@ class Room < ApplicationRecord
     
     errors.add(:base, '東、南、西、北を一回ずつ入力してください') if count_nan == 0 || count_ton == 0 || count_sha == 0 || count_pe == 0
   end
-
+  
+  def require_total_rate
+    total_rate = 0
+    game_records
+      .select{ |game_record| game_record.calculation == nil }
+      .each do |game_records|
+      total_rate += game_records.rate
+    end
+    errors.add(:base, 'レートの合計が0になるように点数を調整してください') if total_rate != 0
+  end
 end
