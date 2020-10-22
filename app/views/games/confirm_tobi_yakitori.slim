@@ -15,19 +15,22 @@
     = f.fields_for :game_records, local: true do |form|
       .field
         - game_record = form.object
-        a #{@game_records_now[recordNum].user.name}
         - next if game_record.calculation?
         - if game_record.seat == 'ton'
           .player1
+            a #{@game_records_now[recordNum].user.name}
             = form.select :tobashi, [ ["とばしました。",true],["とばしていません。",false]]
         - if game_record.seat == 'nan'
           .player1
+            a #{@game_records_now[recordNum].user.name}
             = form.select :tobashi, [ ["とばしました。",true],["とばしていません。",false]]
         - if game_record.seat == 'sha'
           .player1
+            a #{@game_records_now[recordNum].user.name}
             = form.select :tobashi,  [ ["とばしました。",true],["とばしていません。",false]]
         - if game_record.seat == 'pe'
           .player1
+            a #{@game_records_now[recordNum].user.name}
             = form.select :tobashi,  [ ["とばしました。",true],["とばしていません。",false]]
       - recordNum += 1
     = f.submit
