@@ -42,11 +42,11 @@
   .vertical-line
   .score-info
     = link_to 'ルール',edit_room_path(params[:room_id]) 
-    - if @room.kuitan = true && @room.atoduke = true
+    - if @room.kuitan == true && @room.atoduke == true
       p ありあり
-    - elsif @room.kuitan = true && @room.atoduke = false
+    - elsif @room.kuitan == true && @room.atoduke == false
       p ありなし
-    - elsif @room.kuitan = false && @room.atoduke = true
+    - elsif @room.kuitan == false && @room.atoduke == true
       p なしあり
     - else
       p なしなし

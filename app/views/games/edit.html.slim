@@ -5,6 +5,16 @@
 
   .yakitori
 
+    - if @room.errors.any?
+      #error_explanation
+        .alert.alert-danger
+          = pluralize(@room.errors.count, "error")
+          ul
+          - @room.errors.full_messages.each do |msg|
+            li = msg
+
+
+
   = form_with(model: @room, url: room_game_path, local: true) do |f|
     - recordNum = 0
     = f.fields_for :game_records, local: true do |form|
