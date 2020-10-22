@@ -52,7 +52,26 @@
       p なしなし
 
 .contents-wrapper
-  p.term-result X月X日~X月X日の対局結果
+  p.term-result これまでの対局結果
+
+
+
+  table 
+    tr 
+      td 局番号 
+      td #{@player_mine.name}
+      td #{@player_front.name}
+      td #{@player_left.name}
+      td #{@player_right.name}
+    - game_number = 1
+    - @count.times do
+      tr
+        td #{game_number} 
+        td #{@game_records.where(count: game_number).find_by(user_id: @player_mine.id).point}
+        td #{@game_records.where(count: game_number).find_by(user_id: @player_front.id).point}
+        td #{@game_records.where(count: game_number).find_by(user_id: @player_left.id).point}
+        td #{@game_records.where(count: game_number).find_by(user_id: @player_right.id).point} 
+      - game_number += 1
 
 .game-room-buttons
     p = link_to '終了する', room_logout_index_path, class: 'silver-button exit-room'
