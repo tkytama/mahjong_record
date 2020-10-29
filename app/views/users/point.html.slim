@@ -2,22 +2,14 @@ h1 検索ページ
 
 .contents-wrapper
       
-  p.term-result 年 月 日　～　年 月 日  検索
 
   = search_form_for @q, url: point_user_path do |f|
     = f.date_field :created_at_gteq 
+    span ～
     = f.date_field :created_at_lteq
     = f.submit
 
-  table border="1"
- 
-    - @gamerecords_user.each do |sample|
-      tr
-        td #{sample.created_at.strftime('%Y/%m/%d')}
-        td #{sample.point}
-
-
-  p.term-result X月X日~X月X日の対局結果
+  p.term-result 検索期間の対局結果
 
   table border="1"
     tr
