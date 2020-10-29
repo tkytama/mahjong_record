@@ -16,11 +16,13 @@
     .vertical-line
     .score-info
       p 平均得点
-      p #{@gamerecords.average(:point).round}
+      - unless @gamerecords.empty? 
+        p #{@gamerecords.average(:point).round}
     .vertical-line
     .score-info
       p 平均点
-      p #{@gamerecords.average(:rate).round(2)}
+      - unless @gamerecords.empty?
+        p #{@gamerecords.average(:rate).round(2)}
   table border="1" 
     tr
       td 対局日 
