@@ -3,9 +3,58 @@ h1 検索ページ
 .contents-wrapper
       
   p.term-result 年 月 日　～　年 月 日  検索
-  p.term-result X月X日~X月X日の対局結果
-  .game-result-list
-  p.confirm-rule = link_to 'この日のルール確認', edit_user_registration_path
 
+  = search_form_for @q, url: point_user_path do |f|
+    = f.date_field :created_at_gteq 
+    = f.date_field :created_at_lteq
+    = f.submit
+
+  table border="1"
+ 
+    - @gamerecords_user.each do |sample|
+      tr
+        td #{sample.created_at.strftime('%Y/%m/%d')}
+        td #{sample.point}
+
+
+  p.term-result X月X日~X月X日の対局結果
+
+  table border="1"
+    tr
+      td 対局日
+      td 対局数
+      td 最高得点
+      td 最低得点
+      td 平均得点
+      td 最高レート
+      td 最低レート
+      td 平均レート
+      td 最高順位
+      td 最低順位
+      td 平均順位
+
+    - @rooms_number.each do |number|
+      tr
+        - record = @gamerecords_user.where(room_id: number)
+        - if record.empty?
+          td colspan=11 該当結果はありません
+        - else
+          - if record.find_by(count: 1) == nil
+            td -
+          - else
+            td #{record.find_by(count: 1).created_at.strftime('%Y/%m/%d')}
+          td #{record.maximum(:count)}
+          td #{record.maximum(:point)}
+          td #{record.minimum(:point)}
+          td #{record.average(:point).round}
+          td #{record.maximum(:rate)}
+          td #{record.minimum(:rate)}
+          td #{record.average(:rate).round(2)}
+          td #{record.maximum(:rank)}
+          td #{record.minimum(:rank)}
+          td #{record.average(:rank)}
+
+
+  p.confirm-rule = link_to 'この日のルール確認', edit_user_registration_path
 .back-button
   = link_to "もどる", :back
