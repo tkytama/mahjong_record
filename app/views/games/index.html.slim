@@ -3,7 +3,10 @@
     .player.position_front
       .player-image
         = link_to room_player_path(params[:room_id], @player_front.id)
-          = image_tag @player_front.image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @player_front.image.attached?
+         - if @player_front.image.attached?
+            = image_tag @player_front.image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true})
+         - else
+           = image_tag 'default_user.jpg', size: '100x100'
       p #{@player_front.name}
       p #{@game_records_now.find_by(user_id: @player_front.id).point}
 
@@ -11,21 +14,30 @@
       .player.position_left
         .player-image
           = link_to room_player_path(@player_left.room_id, @player_left.id)
-            = image_tag @player_left.image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @player_left.image.attached?
+            - if @player_left.image.attached?
+              = image_tag @player_left.image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true})
+            - else
+              = image_tag 'default_user.jpg', size: '100x100'
         p #{@player_left.name}
         p #{@game_records_now.find_by(user_id: @player_left.id).point}
 
       .player.position_right
         .player-image
           = link_to room_player_path(@player_right.room_id, @player_right.id)
-            = image_tag @player_right.image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @player_right.image.attached?
+            - if @player_right.image.attached?
+              = image_tag @player_right.image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) 
+            - else
+              = image_tag 'default_user.jpg', size: '100x100'
         p #{@player_right.name}
         p #{@game_records_now.find_by(user_id: @player_right.id).point}
 
     .player.position_mine
       .player-image
         = link_to room_player_path(@player_mine.room_id, @player_mine.id)
-          = image_tag @player_mine.image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) if @player_mine.image.attached?
+          - if @player_mine.image.attached?
+            = image_tag @player_mine.image.variant(combine_options: {resize: "100^", gravity: "Center" ,crop: "100x100+0+0", auto_orient: true}) 
+          - else
+            = image_tag 'default_user.jpg', size: '100x100'
       p #{@player_mine.name}
       p #{@game_records_now.find_by(user_id: @player_mine.id).point}
 
