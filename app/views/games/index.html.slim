@@ -83,9 +83,10 @@
         td #{@game_records.where(count: game_number).find_by(user_id: @player_front.id).point}
         td #{@game_records.where(count: game_number).find_by(user_id: @player_left.id).point}
         td #{@game_records.where(count: game_number).find_by(user_id: @player_right.id).point} 
+        td = link_to '修正', confirm_tobi_yakitori_room_game_path(count: game_number), class: 'white-button game-record'
       - game_number += 1
 
 .game-room-buttons
     p = link_to '終了する', room_logout_index_path, class: 'silver-button exit-room'
-    p = link_to '前の局へ', new_enter_room_path, class: 'white-button game-record'
+    p = link_to '局目の集計', new_enter_room_path, class: 'white-button game-record'
     p = link_to '次の局へ', confirm_tobi_yakitori_room_game_path(count: @count), class: 'white-button game-record'

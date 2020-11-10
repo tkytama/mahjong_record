@@ -1,6 +1,6 @@
 .contents-wrapper
   h6 飛び焼き鳥確認画面
-  p  #{@count}局目の結果を精算します。
+  p  #{params[:count]}局目の結果を精算します。
 
   .tobi
     -
@@ -53,5 +53,5 @@
 
   .button
     p 焼き鳥の人を変更
-    p = link_to "確認する",edit_room_game_path(count: @count)
+    p = link_to "確認する",edit_room_game_path(count: params[:count])
     p = link_to "もどる", :back

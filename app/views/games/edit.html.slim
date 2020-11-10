@@ -1,6 +1,6 @@
 .contents-wrapper
   .content
-    p #{@count}半荘目を終わります。
+    p #{params[:count]}半荘目を終わります。
     p 以下の点数でよろしいですか？
 
   .yakitori
@@ -20,25 +20,25 @@
     = f.fields_for :game_records, local: true do |form|
       .field
         - game_record = form.object
-        - next if game_record.calculation?
-        a #{@game_records_now[recordNum].user.name}
-        - if @game_records_now[recordNum].point >= 0
-          - point = ((@game_records_now[recordNum].point - 100 ).round(-3) / 1000) - (@room.kaeshi / 1000)
+        - next if game_record.count != params[:count].to_i
+        a #{@game_records_count[recordNum].user.name}
+        - if @game_records_count[recordNum].point >= 0
+          - point = ((@game_records_count[recordNum].point - 100 ).round(-3) / 1000) - (@room.kaeshi / 1000)
         - else
-          - point = ((@game_records_now[recordNum].point + 100 ).round(-3) / 1000) - @room.tobi - (@room.kaeshi / 1000)
-        - if @game_records_now[recordNum].point ==  @game_records_now.pluck(:point).sort.reverse[3]
+          - point = ((@game_records_count[recordNum].point + 100 ).round(-3) / 1000) - @room.tobi - (@room.kaeshi / 1000)
+        - if @game_records_count[recordNum].point ==  @game_records_count.pluck(:point).sort.reverse[3]
           - point -= @room.uma_4to1
-        - elsif @game_records_now[recordNum].point ==  @game_records_now.pluck(:point).sort.reverse[2]
+        - elsif @game_records_count[recordNum].point ==  @game_records_count.pluck(:point).sort.reverse[2]
           - point -= @room.uma_3to2
-        - elsif @game_records_now[recordNum].point ==  @game_records_now.pluck(:point).sort.reverse[1]
+        - elsif @game_records_count[recordNum].point ==  @game_records_count.pluck(:point).sort.reverse[1]
           - point += @room.uma_3to2
         - else
           - point += (@room.uma_4to1 + ((@room.kaeshi - @room.mochi) * 4 / 1000))
-        - if @game_records_now[recordNum].yakitori 
+        - if @game_records_count[recordNum].yakitori 
           - point -= (@room.yakitori * (4 - @yakitori_count)) 
-        - elsif @game_records_now[recordNum].yakitori == false && @game_records_now.where(yakitori: true).count > 0
+        - elsif @game_records_count[recordNum].yakitori == false && @game_records_count.where(yakitori: true).count > 0
           - point += (@room.yakitori * (4 - @yakitori_count))
-        - if @game_records_now[recordNum].tobashi
+        - if @game_records_count[recordNum].tobashi
           - point += @room.tobi
 
         - if game_record.seat == 'ton'
