@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'mahjong_record/top'
   root to: 'mahjong_record#top'
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   
   resources :users, only: [:show] do
     member do
