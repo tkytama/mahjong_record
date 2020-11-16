@@ -10,6 +10,7 @@
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email",size: :"30" %>
     </div>
+    <br>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -19,6 +20,7 @@
       <%= f.label :name %> <br />
       <%= f.text_field :name,size: :"30" %>
     </div>
+    <br>
 
     <div class="field">
       <i> 新しい</i><%= f.label :password %> <em>最低<%= @minimum_password_length %>桁</em>
@@ -28,21 +30,25 @@
         <br />
       <% end %>
     </div>
+    <br>
 
     <div class="field">
       <i>新しい</i><%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password",size: :"30" %>
     </div>
+    <br>
 
     <div class="field">
       <%= f.label :current_password %> <br />
       <%= f.password_field :current_password, autocomplete: "current-password",size: :"30" %>
     </div>
+    <br>
 
     <div class="field">
       <%= f.label :image %>
       <%= f.file_field :image, class: 'form-control' %>
     </div>
+    <br>
 
     <div class="white-button">
       <%= f.submit "変更" %>
