@@ -10,7 +10,14 @@ class LogoutController < ApplicationController
       game_record.destroy
     end
 
-    redirect_to user_path
+    @game_records.pluck(:user_id).uniq.each do |player|
+      user = User.find(player)
+      user.room_id = nil
+      user.save
+    end
+    @room.room_key = nil
+    @room.save
+    redirect_to user_path(id: current_user.id)
     
   end
 

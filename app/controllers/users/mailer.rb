@@ -3,7 +3,6 @@ class Users::Mailer < Devise::Mailer
   include Devise::Controllers::UrlHelpers # Optional. eg. `confirmation_url`
  
   def confirmation_instructions(record, token, opts={})
-    # customize
     super
   end
  

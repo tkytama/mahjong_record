@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
 # Use sqlite3 as the database for Active Record
 gem 'boostrap-sass'
 gem 'jquery-rails'
-gem 'sqlite3'
+#gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -38,9 +38,11 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
+gem 'omniauth-twitter'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'sqlite3'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
@@ -54,6 +56,11 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+group :production do
+  gem 'pg', '0.20.0'
+end
+
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
@@ -71,3 +78,4 @@ gem 'html2slim'
 gem 'rails-i18n'
 gem 'image_processing', '~> 1.2'
 gem 'kaminari'
+gem 'ransack'
