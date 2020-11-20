@@ -18,8 +18,9 @@ html
           ul.navbar-nav
             li.nav-item
               =link_to 'トップ画面', mahjong_record_top_path,class: "header-char"
-            li.nav-item.invalid-line
-              =link_to 'ログアウト', destroy_user_session_path, method: :delete,data: { confirm: 'ログアウトしてもよろしいですか？'}, class: "header-char"
+            -if current_user != nil
+              li.nav-item.invalid-line
+                =link_to 'ログアウト', destroy_user_session_path, method: :delete,data: { confirm: 'ログアウトしてもよろしいですか？'}, class: "header-char"
             li.nav-item
               =link_to 'ログイン', new_user_session_path,class: "header-char"
             li.nav-item
