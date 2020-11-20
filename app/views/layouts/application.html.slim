@@ -21,8 +21,9 @@ html
             -if current_user != nil
               li.nav-item.invalid-line
                 =link_to 'ログアウト', destroy_user_session_path, method: :delete,data: { confirm: 'ログアウトしてもよろしいですか？'}, class: "header-char"
-            li.nav-item
-              =link_to 'ログイン', new_user_session_path,class: "header-char"
+            -if current_user == nil
+              li.nav-item
+                =link_to 'ログイン', new_user_session_path,class: "header-char"
             li.nav-item
               =link_to '新規登録',new_user_registration_path, class: "header-char"
       .container-fluid
