@@ -3,14 +3,15 @@
 
     = form_with url: enter_rooms_url do |f|
       .form-group
-        = f.label :room_key
+        span "hello"
         = f.text_field :room_key, clss: 'form-control', id: 'rooms_room_key'
 
-      = f.submit 
+      = f.submit "部屋にはいる" 
 
-    p = link_to '部屋をつくる', new_room_path, class: 'silver-button make-room'
+    br
 
-    p = link_to "もどる", :back
+    p = link_to '部屋をつくるのはこちら', new_room_path,{ class: "link"}
 
-    p 部屋をつくるのはこちら
+    p = link_to "もどる", :back, class: "back"
+
 
