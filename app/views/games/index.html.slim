@@ -46,7 +46,15 @@
 .average-result
   .score-info
     = link_to '起家',game_records_room_path(params[:room_id]) 
-    p #{@game_records_now.find_by(user_id: @player_mine.id).seat}
+    - if @game_records_now.find_by(user_id: @player_mine.id).seat == "ton"
+      p 東
+    - elsif @game_records_now.find_by(user_id: @player_mine.id).seat == "nan"
+      p 南
+    - elsif @game_records_now.find_by(user_id: @player_mine.id).seat == "sha"
+      p 西
+    - else
+      p 北
+      
   .vertical-line
   .score-info
     = link_to '得点',game_records_room_path(params[:room_id]) 
