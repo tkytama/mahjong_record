@@ -16,8 +16,7 @@ class RoomsController < ApplicationController
       end
     end
 
-    @room = Room.new(room_key: random_number,kaeshi: 30000, mochi: 25000, uma_4to1: 10, uma_3to2: 5)
-    @room.save
+    @room = Room.create(room_key: random_number,kaeshi: 30000, mochi: 25000, uma_4to1: 10, uma_3to2: 5,count: 1)
     user = User.find(current_user.id)
     user.room_id = @room.id
     user.save
