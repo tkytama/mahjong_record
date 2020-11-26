@@ -11,10 +11,10 @@ class EnterRoomsController < ApplicationController
       user.room_id = @room.id
       user.save
         if players.count == 4
-          player1 = GameRecord.new(user_id: players[0].id ,room_id: @room.id ,game_number:1, point: 25000, seat: "ton")
-	  player2 = GameRecord.new(user_id: players[1].id ,room_id: @room.id ,game_number:1, point: 25000, seat: "nan")
-	  player3 = GameRecord.new(user_id: players[2].id ,room_id: @room.id ,game_number:1, point: 25000, seat: "sha")
-	  player4 = GameRecord.new(user_id: players[3].id ,room_id: @room.id ,game_number:1, point: 25000, seat: "pe")
+          player1 = GameRecord.new(user_id: players[0].id ,room_id: @room.id ,game_number:1, point: 25000, seat: "ton", count: 1, rate: 0)
+	  player2 = GameRecord.new(user_id: players[1].id ,room_id: @room.id ,game_number:1, point: 25000, seat: "nan", count: 1, rate: 0)
+	  player3 = GameRecord.new(user_id: players[2].id ,room_id: @room.id ,game_number:1, point: 25000, seat: "sha", count: 1, rate: 0)
+	  player4 = GameRecord.new(user_id: players[3].id ,room_id: @room.id ,game_number:1, point: 25000, seat: "pe", count: 1, rate: 0)
 	  player1.save
 	  player2.save
 	  player3.save
