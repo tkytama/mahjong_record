@@ -1,30 +1,30 @@
 
 = form_with model: @room, local: true do |f|
   .form-group
-    = f.label :kaeshi
+    = f.label :kaeshi, "返し"
     = f.text_field :kaeshi, class: 'form-control'
   .form-group
-    = f.label :mochi
+    = f.label :mochi, "持ち"
     = f.text_field :mochi, class: 'form-control'
   .form-group
-    = f.label :uma_4to1
+    = f.label :uma_4to1, "ウマ(4着→1着)"
     = f.text_field :uma_4to1, class: 'form-control'
   .form-group
-    = f.label :uma_3to2
+    = f.label :uma_3to2, "ウマ(3着→2着)"
     = f.text_field :uma_3to2, class: 'form-control'
   .form-group
-    = f.label :tobi
+    = f.label :tobi, "飛び"
     = f.text_field :tobi, class: 'form-control'
   .form-group
-    = f.label :rate
+    = f.label :rate, "レート"
     = f.text_field :rate, class: 'form-control'
   .form-group
-    = f.label :yakitori
+    = f.label :yakitori, "焼き鳥の点数(焼き鳥無しの場合は0を入力)"
     = f.text_field :yakitori, class: 'form-control'
   .form-group
-    = f.label :kuitan
+    = f.label :kuitan, "喰いタンの有無"
     = f.select:kuitan, [["あり", true],["なし", false]], class: 'form-control'
   .form-group
-    = f.label :atoduke
+    = f.label :atoduke, "後付けの有無"
     = f.select :atoduke, [["あり", true],["なし", false]],class: 'form-control'
   = f.submit nil, class: 'btn btn-primary'

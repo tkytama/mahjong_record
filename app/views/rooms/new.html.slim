@@ -1,7 +1,10 @@
 .contents-wrapper
   .room_number
 
-    = button_to '部屋をつくる', rooms_path 
-    p = link_to "もどる", :back
+    = button_to "部屋をつくる", {controller: 'rooms', action: 'create'}
+    
+    br
+    
+    p = link_to "部屋に入るのはこちら", new_enter_room_path,{class: "link"}
 
-    p 部屋をつくるのはこちら
+    p = link_to "もどる", :back, class: "back"
