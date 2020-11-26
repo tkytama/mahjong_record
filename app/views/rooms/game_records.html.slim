@@ -16,37 +16,33 @@
         - next if game_record.calculation?
         - if game_record.seat == 'ton'
           .player1.position_front
-            = form.number_field :point
+            span 　 
+            = form.number_field :point, step: 100
             = form.select :seat, [ ["東","ton"],["南","nan"],["西","sha"],["北","pe"]]
-            - if @room.yakitori = nil
-              = form.label :焼き鳥
-              = form.check_box :yakitori, as: :boolean
+            - if @room.yakitori != nil
+              = form.select :yakitori,[["焼き鳥", true],["焼き解消", false]]
             p #{@player_front.name}
         - if game_record.seat == 'nan'
           .player1.position_left
-            = form.number_field :point
+            = form.number_field :point, step: 100
             = form.select :seat, [ ["東","ton"],["南","nan"],["西","sha"],["北","pe"]]
-            - if @room.yakitori = nil
-              = form.label :焼き鳥
-              = form.check_box :yakitori, as: :boolean
+            - if @room.yakitori != nil
+              = form.select :yakitori,[["焼き鳥", true],["焼き解消", false]]
             p #{@player_left.name}
         - if game_record.seat == 'sha'
           .player1.position_right
-            = form.number_field :point
+            = form.number_field :point, step: 100
             = form.select :seat, [ ["東","ton"],["南","nan"],["西","sha"],["北","pe"]]
-            - if @room.yakitori = nil
-              = form.label :焼き鳥
-              = form.check_box :yakitori, as: :boolean
+            - if @room.yakitori != nil
+              = form.select :yakitori,[["焼き鳥", true],["焼き解消", false]]
             p #{@player_right.name}
         - if game_record.seat == 'pe'
           .player1.position_mine
-            = form.number_field :point
+            = form.number_field :point, step: 100
             = form.select :seat, [ ["東","ton"],["南","nan"],["西","sha"],["北","pe"]]
-            - if @room.yakitori = nil
-              = form.label :焼き鳥
-              = form.check_box :yakitori, as: :boolean
+            - if @room.yakitori != nil
+              = form.select :yakitori,[["焼き鳥", true],["焼き解消", false]]
             p #{@player_mine.name}
-    = f.submit
+    = f.submit "変更"
 
-  p 変更
   p もどる
