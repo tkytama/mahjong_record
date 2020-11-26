@@ -150,7 +150,7 @@ class GamesController < ApplicationController
     end
 
     def update_room_params
-      params.require(:room).permit(game_records_attributes: [:point, :seat, :id, :rate, :count])
+      params.require(:room).permit(game_records_attributes: [:point, :seat, :id, :rate, :count, :rank])
     end
 
     def other_player(front, left, right)
