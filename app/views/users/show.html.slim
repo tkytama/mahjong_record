@@ -25,7 +25,7 @@
     .score-info
       p 平均点
       - unless @gamerecords.empty?
-        p #{@gamerecords.average(:rate).round(2)}
+        p #{@gamerecords.average(:rate)}
   table border="1" 
     tr
       td 対局日 
@@ -43,14 +43,17 @@
     - @rooms_number.each do |number|
       tr
         - record = @gamerecords.where(room_id: number)
-        td #{record.find_by(count: 1).created_at.strftime('%Y/%m/%d')}
+        - if record.find_by(count: 1)
+          td #{record.find_by(count: 1).created_at.strftime('%Y/%m/%d')}
+        - else
+          td error
         td #{record.maximum(:count)}
         td #{record.maximum(:point)}
         td #{record.minimum(:point)}
         td #{record.average(:point).round}
         td #{record.maximum(:rate)}
         td #{record.minimum(:rate)}
-        td #{record.average(:rate).round(2)}
+        td #{record.average(:rate)}
         td #{record.maximum(:rank)}
         td #{record.minimum(:rank)}
         td #{record.average(:rank)}
